@@ -1,0 +1,12 @@
+docker run -it centos:latest
+yum update -y
+yum install httpd httpd-tool -y
+yum install vim -y 
+yum install epel-release -y 
+yum update -y 
+yum install htop -y 
+
+docker cp ~/Desktop/docker_pratice/mycode/myimage/test.html
+        cent1:/var/www/html
+
+docker commit cent1 myimage:v1

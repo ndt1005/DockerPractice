@@ -1,0 +1,30 @@
+version: "3.7"
+
+services: 
+    service1:
+        image: zaka304/swarmtest:node
+        ports: 
+            - 8087:8085
+        
+        deploy:
+            replicas: 5
+            resources: 
+                limits:
+                    cpus: '0.5'
+                    memory: 150MB
+            restart_policy:
+                condition: on-failure
+
+    service2:
+        image: zaka304/swarmtest:php
+        ports: 
+            - 8086:8085
+        
+        deploy:
+            replicas: 5
+            resources: 
+                limits:
+                    cpus: '0.5'
+                    memory: 150MB
+            restart_policy:
+                condition: on-failure

@@ -1,0 +1,31 @@
+PHP:7.3-fpm (php-product)   
+    - port: 9000
+    - install mysqli, pdo_mysqli
+        * docker-php-ext-install mysqli
+        * docker-php-ext-install pdo_mysqli
+    - Working folder: /home/sites/site1
+
+APACHE HTTPD: (c-httpd01)
+    - port: 80, 443
+    - config: /usr/local/apache2/conf/httpd.conf 
+        * Fetch: mod_proxy, mod_proxy_fcgi
+        * Working folder: /home/sites/site1
+        * default index: index.php, index.html
+        * PHPHANDLER: AddHandler "proxy:fcgi://php-product:9000"
+
+MYSQL: (mysql-product)
+    - port: 3304
+    - config: /etc/mysql/my.cnf 
+        * default-authentication-plugin = mysql_native_password
+    - databases: /var/lib/mysql -> /mycode/databases
+    - MYSQL_ROOT_PASSWORD: asd123456
+    - MYSQL_DATABASE:   db_site
+    - MYSQL_USER: siteuser
+    - MYSQL_PASSWORD: sitepass
+
+NETWORK:
+    - bridge
+    - my-network
+
+VOLUME: dir-site 
+    - bind, device = /mycode/

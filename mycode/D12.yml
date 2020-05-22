@@ -1,0 +1,9 @@
+#YAML .yml
+name: ABC
+YOB : 2000
+subjects:
+  lessonA: 9
+  lessonB: 8
+  lessonC: 
+    - 5
+    - 9
